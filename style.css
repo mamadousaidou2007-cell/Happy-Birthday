@@ -1,0 +1,172 @@
+:root {
+  --night: #2a1233;
+  --plum: #43204f;
+  --rose: #e8577a;
+  --gold: #f2c879;
+  --paper: #fff1ec;
+  --ink: #3a1c2e;
+  --soft: #e9d3e4;
+  color-scheme: dark;
+  box-sizing: border-box;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+html { scroll-padding-top: env(safe-area-inset-top, 0px); }
+
+*, *::before, *::after { box-sizing: inherit; }
+
+body {
+  margin: 0;
+  background: radial-gradient(120% 80% at 50% 0%, var(--plum), var(--night) 70%) fixed;
+  color: var(--soft);
+  font-family: Nunito, system-ui, sans-serif;
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+section {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 10px;
+}
+
+/* Hero */
+.hero {
+  min-height: 92vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+.hero small { font-size: 1.05rem; color: var(--gold); letter-spacing: .04em; }
+h1 {
+  font-family: Fraunces, Georgia, serif;
+  font-style: italic;
+  font-weight: 700;
+  font-size: clamp(3.2rem, 16vw, 7rem);
+  line-height: 1;
+  margin: .15em 0 .25em;
+  color: var(--paper);
+  text-shadow: 0 0 40px rgba(232, 87, 122, .45);
+}
+.hero p { margin: 0 auto; max-width: 30ch; font-size: 1.1rem; }
+.hint { margin-top: 3rem; font-family: Caveat, cursive; font-size: 1.5rem; color: var(--gold); }
+
+/* Phrases */
+.reasons p {
+  font-family: Fraunces, Georgia, serif;
+  font-style: italic;
+  font-weight: 500;
+  font-size: clamp(1.4rem, 5vw, 1.9rem);
+  line-height: 1.4;
+  color: var(--paper);
+  margin: 0 0 2.2rem;
+}
+.reasons p:nth-child(even) { text-align: right; color: var(--gold); }
+
+/* Photo */
+.photo { text-align: center; padding-top: 0; }
+.polaroid {
+  display: inline-block;
+  background: var(--paper);
+  padding: 14px 14px 18px;
+  border-radius: 4px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, .45);
+  transform: rotate(2deg);
+  max-width: 100%;
+}
+.polaroid img {
+  display: block;
+  width: min(300px, 72vw);
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  background: var(--soft);
+}
+.polaroid figcaption { font-family: Caveat, cursive; font-size: 1.6rem; color: var(--ink); margin-top: 10px; }
+
+/* Lettre */
+.letterwrap { text-align: center; }
+button.seal {
+  font: inherit;
+  cursor: pointer;
+  border: 0;
+  background: var(--rose);
+  color: #fff;
+  font-weight: 600;
+  font-size: 1.1rem;
+  padding: 1rem 2rem;
+  border-radius: 999px;
+  box-shadow: 0 8px 30px rgba(232, 87, 122, .45);
+  transition: transform .2s;
+}
+button.seal:hover { transform: scale(1.05); }
+button.seal:focus-visible { outline: 3px solid var(--gold); outline-offset: 4px; }
+
+.letter {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows .9s ease;
+}
+.letter.open { grid-template-rows: 1fr; }
+.letter > div { overflow: hidden; }
+
+.paper {
+  background: var(--paper);
+  color: var(--ink);
+  margin-top: 2rem;
+  padding: 2.2rem 1.8rem;
+  border-radius: 6px;
+  text-align: left;
+  font-family: Caveat, cursive;
+  font-size: 1.55rem;
+  line-height: 1.55;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, .4);
+  transform: rotate(-1deg);
+}
+.paper p { margin: 0 0 1em; }
+.sign { text-align: right; }
+
+/* Pied de page */
+footer {
+  text-align: center;
+  padding: 6vh 24px 12vh;
+  color: var(--gold);
+  font-family: Caveat, cursive;
+  font-size: 1.6rem;
+}
+
+/* Cœurs animés */
+.heart {
+  position: fixed;
+  bottom: -2rem;
+  pointer-events: none;
+  color: var(--rose);
+  animation: rise linear forwards;
+  z-index: 5;
+}
+@keyframes rise {
+  to { transform: translateY(-110vh) rotate(25deg); opacity: 0; }
+}
+
+/* Bouton télécharger */
+.keep {
+  font: inherit;
+  font-size: 1.05rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 1.5rem;
+  background: transparent;
+  color: var(--gold);
+  border: 2px solid var(--gold);
+  padding: .8rem 1.6rem;
+  border-radius: 999px;
+}
+.keep:hover { background: var(--gold); color: var(--night); }
+.keep:focus-visible { outline: 3px solid var(--rose); outline-offset: 4px; }
+#keepmsg { font-family: Nunito, sans-serif; font-size: .95rem; color: var(--soft); margin-top: .8rem; }
+
+@media (prefers-reduced-motion: reduce) {
+  .letter { transition: none; }
+  .heart { display: none; }
+}
